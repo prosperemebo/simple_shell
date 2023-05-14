@@ -1,2 +1,3 @@
-# simple_shell
- A simple UNIX command interpreter.
+# simple_shell - An ALX Project
+
+A simple UNIX command interpreter.
