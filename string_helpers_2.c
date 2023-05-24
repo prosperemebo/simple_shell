@@ -20,7 +20,8 @@ void str_reverse(char *string)
 }
 
 /**
- * tokenize - Separates a string into different parts using a specified delimiter
+ * tokenise_string - Separates a string into different
+ * parts using a specified delimiter
  * @data: Pointer to the program's data
  *
  * Return: An array of the different parts of the string

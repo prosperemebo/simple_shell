@@ -1,14 +1,6 @@
 #include "main.h"
 
 /**
- * expand_variables - expands environment variables and other special variables in the input line
- */
-// void expand_variables(program_data *data)
-// {
-// 	expand_line(data);
-// }
-
-/**
  * expand_alias - expans aliases
  * @data: a pointer to a struct of the program's data
  *

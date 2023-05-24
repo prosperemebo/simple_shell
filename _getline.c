@@ -27,8 +27,7 @@ int _getline(program_data *data)
 			return (-1);
 
 		i = 0;
-		do
-		{
+		do {
 			array_commands[i] = str_duplicate(_strtok(i ? NULL : buff, "\n;"));
 			i = check_operators(array_commands, i, array_operators);
 		} while (array_commands[i++]);
