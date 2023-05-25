@@ -3,18 +3,21 @@
 /**
  * builtin_exit - exit of the program with the status
  * @data: Program's data
- * Return: zero if sucess, or other number if its declared in the arguments
+ * Return: zero if sucess, or other
+ * number if its declared in the arguments
  */
 int builtin_exit(program_data *data)
 {
 	int i;
 
 	if (data->tokens[1] != NULL)
-	{ /*if exists arg for exit, check if is a number*/
+	{
+		/*if exists arg for exit, check if is a number*/
 		for (i = 0; data->tokens[1][i]; i++)
 			if (
 			    (
-				data->tokens[1][i] < '0' || data->tokens[1][i] > '9') &&
+				data->tokens[1][i] < '0' ||
+				data->tokens[1][i] > '9') &&
 			    data->tokens[1][i] != '+')
 			{ /*if is not a number*/
 				errno = 2;
@@ -29,7 +32,8 @@ int builtin_exit(program_data *data)
 /**
  * builtin_cd - change the current directory
  * @data: Program's data
- * Return: zero if sucess, or other number if its declared in the arguments
+ * Return: zero if sucess, or other
+ * number if its declared in the arguments
  */
 int builtin_cd(program_data *data)
 {

@@ -17,7 +17,8 @@ int builtin_env(program_data *data)
 }
 
 /**
- * handle_env_assignment - Handles environment variable assignment
+ * handle_env_assignment - Handles environment
+ * variable assignment
  * @data: Program's data
  */
 void handle_env_assignment(program_data *data)

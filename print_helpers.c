@@ -68,3 +68,11 @@ int _print_error(int errorcode, program_data *data)
 	}
 	return (0);
 }
+
+/**
+ * print_prompt - Prints the shell prompt
+ */
+void print_prompt(void)
+{
+	_print("#cisfun$ ");
+}

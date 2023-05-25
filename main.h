@@ -52,12 +52,13 @@ typedef struct built_ins
 int _print(char *string);
 int _printe(char *string);
 int _print_error(int errorcode, program_data *data);
+void print_prompt(void);
 
 /* shell.c */
 void prepare_program(program_data *data, int arc, char *argv[], char **env);
-void prompt_manager(char *prompt, program_data *data);
+void prompt_manager(program_data *data);
 void quit_shell(int opr UNUSED);
-int execute(program_data *data);
+void execute(program_data *data);
 
 /* _getline.c */
 int _getline(program_data *data);
