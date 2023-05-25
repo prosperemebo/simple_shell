@@ -13,7 +13,7 @@ int builtin_env(program_data *data)
 	else
 		handle_env_assignment(data);
 
-	return 0;
+	return (0);
 }
 
 /**
@@ -74,7 +74,7 @@ int builtin_set_env(program_data *data)
 
 	set_env_key(data->tokens[1], data->tokens[2], data);
 
-	return 0;
+	return (0);
 }
 
 /**
@@ -97,5 +97,5 @@ int builtin_unset_env(program_data *data)
 
 	remove_env_key(data->tokens[1], data);
 
-	return 0;
+	return (0);
 }
