@@ -64,11 +64,13 @@ void expand_special_variables(program_data *data, char *line)
 }
 
 /**
- * expand_environment_variables - Expands environment variables in the given line.
+ * expand_environment_variables - Expands environment variables
+ * in the given line.
  * @data: Pointer to program data.
  * @line: Line to expand variables in.
  *
- * This function expands environment variables ('$<variable>') in the given line.
+ * This function expands environment
+ * variables ('$<variable>') in the given line.
  * It modifies the line in-place.
  */
 void expand_environment_variables(program_data *data, char *line)
