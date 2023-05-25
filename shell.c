@@ -1,131 +1,48 @@
-#include "main.h"
+#include "head.h"
 
 /**
- * main - Program Init
- * @argc: Number of input values
- * @argv: Input values
- * @env: Enviroment variables
- * Return: zero on success.
+ * main - simple shell program
+ * @argc: arguments count
+ * @args: arguments set
+ * Return: 0
  */
-int main(int argc, char *argv[], char *env[])
+int main(int argc, char **args)
 {
-	program_data data_struct;
-	program_data *data = &data_struct;
+	aliases alias;
+	int idx = 0, ret_val = 0;
+	char *input = NULL, *name = args[0], *temp = NULL;
 
-	data_struct.input_line = NULL;
-
-	prepare_program(data, argc, argv, env);
-
-	signal(SIGINT, quit_shell);
-
-	prompt_manager(data);
-
-	return 0;
-}
-
-/**
- * quit_shell - Handles user quitting the shell
- */
-void quit_shell(int opr UNUSED)
-{
-	_print("\n");
-	print_prompt();
-}
-
-/**
- * prepare_program - Prepares struct data for the program
- * @data: Pointer to data
- * @argv: Inputs
- * @argc: Number of inputs
- * @env: Environment variables
- */
-void prepare_program(program_data *data, int argc, char *argv[], char **env)
-{
-	data->program_name = argv[0];
-	data->input_line = NULL;
-	data->command_name = NULL;
-
-	if (argc == 1)
+	(void) argc;
+	alias.name = NULL;
+	alias.value = NULL;
+	while (1)
 	{
-		data->file_descriptor = STDIN_FILENO;
-	}
-	else
-	{
-		data->file_descriptor = open(argv[1], O_RDONLY);
-		if (data->file_descriptor == -1)
+		if (isatty(0) && argc == 1)
+			write(STDOUT_FILENO, "$ ", 2);
+		if (argc == 1 && _getline(&input) <= 0)
 		{
-			perror(data->program_name);
-			exit(EXIT_FAILURE);
+			free(input);
+			if (isatty(0))
+				write(STDOUT_FILENO, "\n", 1);
+			exit(ret_val);
 		}
-	}
-
-	data->tokens = NULL;
-	data->env = env;
-	data->alias_list = NULL;
-}
-
-/**
- * prompt_manager - Keeps the shell running
- * @data: Program's data
- */
-void prompt_manager(program_data *data)
-{
-	int string_count = 0;
-
-	while (++(data->exec_counter))
-	{
-		print_prompt();
-		string_count = _getline(data);
-
-		if (string_count == EOF)
+		else if (argc != 1 && _read(&input, args) <= 0)
 		{
-			free_all_data(data);
-			exit(EXIT_SUCCESS);
+			free(input);
+			if (isatty(0))
+				write(STDOUT_FILENO, "\n", 1);
+			exit(ret_val);
 		}
-
-		if (string_count >= 1)
+		temp = _strstr(input, "#");
+		if (temp)
+			*temp = '\0';
+		if (*input != '\0' && _strcmp(input, "\n"))
 		{
-			tokenise_string(data);
-			if (data->tokens[0])
-			{
-				execute(data);
-			}
-			free_duplicate_data(data);
+			error(name, NULL, NULL, 0);
+			ret_val = split_line(input, name, &alias, &idx);
 		}
-	}
-}
-
-/**
- * execute - Execute commands
- * @data: Program's data
- */
-void execute(program_data *data)
-{
-	pid_t pid;
-	int status;
-
-	pid = fork();
-	if (pid == -1)
-	{
-		perror(data->command_name);
-		exit(EXIT_FAILURE);
-	}
-	if (pid == 0)
-	{
-		execve(data->tokens[0], data->tokens, data->env);
-		perror(data->command_name);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		wait(&status);
-		if (WIFEXITED(status))
-		{
-			errno = WEXITSTATUS(status);
-		}
-		else if (WIFSIGNALED(status))
-		{
-			errno = 128 + WTERMSIG(status);
-		}
+		free(input);
+		if (argc != 1)
+			return (0);
 	}
 }
