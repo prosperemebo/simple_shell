@@ -69,7 +69,7 @@ int builtin_set_env(program_data *data)
 	{
 		errno = E2BIG;
 		perror(data->command_name);
-		return 5;
+		return (5);
 	}
 
 	set_env_key(data->tokens[1], data->tokens[2], data);
@@ -92,7 +92,7 @@ int builtin_unset_env(program_data *data)
 	{
 		errno = E2BIG;
 		perror(data->command_name);
-		return 5;
+		return (5);
 	}
 
 	remove_env_key(data->tokens[1], data);
