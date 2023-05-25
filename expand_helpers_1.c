@@ -64,9 +64,6 @@ void expand_variables(program_data *data)
 	}
 }
 
-/**
- * expand_error - expands the $? variable to the last error code
- */
 /*
 void expand_error(char *line)
 {
@@ -81,9 +78,6 @@ void expand_error(char *line)
 	}
 } */
 
-/**
- * expand_pid - expands the $$ variable to the current process ID
- */
 /*
 void expand_pid(char *line)
 {
@@ -98,9 +92,6 @@ void expand_pid(char *line)
 	}
 } */
 
-/**
- * expand_env - expands environment variables (e.g. $PATH)
- */
 /*
 void expand_env(char *line, program_data *data)
 {
@@ -131,9 +122,6 @@ void expand_env(char *line, program_data *data)
 	}
 } */
 
-/**
- * expand_line - expands the entire command line
- */
 /*
 void expand_line(program_data *data)
 {
