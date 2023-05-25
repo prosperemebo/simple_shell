@@ -9,8 +9,11 @@
  */
 int main(int argc, char *argv[], char *env[])
 {
-	program_data data_struct = {.input_line = NULL}, *data = &data_struct;
+	program_data data_struct;
+	program_data *data = &data_struct;
 	char *prompt = "";
+
+	data_struct.input_line = NULL;
 
 	prepare_program(data, argc, argv, env);
 
