@@ -1,19 +1,44 @@
 #include "main.h"
 
 /**
- * expand_variables - Expand shell variables
- * @data: Pointer to program_data struct
+ * expand_variables - Expands variables in the input line.
+ * @data: Pointer to program data.
+ *
+ * This function expands special variables ('$?' and '$$') as well as
+ * environment variables ('$<variable>') in the input line. It modifies
+ * the input line in-place.
  */
 void expand_variables(program_data *data)
 {
-	int i, j, expand_len;
-	char line[BUFFER_SIZE] = {0}, expansion[BUFFER_SIZE] = {0};
-	char *temp, *ptr;
+	char line[BUFFER_SIZE] = {0};
 
 	if (!data->input_line)
 		return;
 
 	append_string(line, data->input_line);
+
+	expand_special_variables(data, line);
+	expand_environment_variables(data, line);
+
+	if (!str_compare(data->input_line, line, 0))
+	{
+		free(data->input_line);
+		data->input_line = str_duplicate(line);
+	}
+}
+
+/**
+ * expand_special_variables - Expands special variables in the given line.
+ * @data: Pointer to program data.
+ * @line: Line to expand variables in.
+ *
+ * This function expands special variables ('$?' and '$$') in the given line.
+ * It modifies the line in-place.
+ */
+void expand_special_variables(program_data *data, char *line)
+{
+	int i;
+	char expansion[BUFFER_SIZE] = {0};
 
 	for (i = 0; line[i]; i++)
 	{
@@ -35,7 +60,26 @@ void expand_variables(program_data *data)
 		}
 		else if (line[i] == '$' && (line[i + 1] == ' ' || line[i + 1] == '\0'))
 			continue;
-		else if (line[i] == '$')
+	}
+}
+
+/**
+ * expand_environment_variables - Expands environment variables in the given line.
+ * @data: Pointer to program data.
+ * @line: Line to expand variables in.
+ *
+ * This function expands environment variables ('$<variable>') in the given line.
+ * It modifies the line in-place.
+ */
+void expand_environment_variables(program_data *data, char *line)
+{
+	int i, j, expand_len;
+	char expansion[BUFFER_SIZE] = {0};
+	char *temp, *ptr;
+
+	for (i = 0; line[i]; i++)
+	{
+		if (line[i] == '$')
 		{
 			ptr = expansion;
 			for (j = 1; line[i + j] && line[i + j] != ' '; j++)
@@ -56,93 +100,4 @@ void expand_variables(program_data *data)
 			free(ptr);
 		}
 	}
-
-	if (!str_compare(data->input_line, line, 0))
-	{
-		free(data->input_line);
-		data->input_line = str_duplicate(line);
-	}
 }
-
-/*
-void expand_error(char *line)
-{
-	char *pos = strstr(line, "$?");
-
-	if (pos != NULL)
-	{
-		char expansion[BUFFER_SIZE];
-		long_to_string(errno, expansion, 10);
-		append_string(line, expansion);
-		append_string(line, pos + 2);
-	}
-} */
-
-/*
-void expand_pid(char *line)
-{
-	char *pos = strstr(line, "$$");
-
-	if (pos != NULL)
-	{
-		char expansion[BUFFER_SIZE];
-		long_to_string(getpid(), expansion, 10);
-		append_string(line, expansion);
-		append_string(line, pos + 2);
-	}
-} */
-
-/*
-void expand_env(char *line, program_data *data)
-{
-	char *pos = strstr(line, "$");
-
-	while (pos != NULL)
-	{
-		char *end = pos + 1;
-
-		while (*end != ' ' && *end != '\0')
-			end++;
-
-		char key[BUFFER_SIZE];
-		str_copy(key, pos + 1, end - pos - 1);
-		char *value = get_env_key(key, data);
-
-		if (value != NULL)
-		{
-			append_string(line, value);
-			append_string(line, end);
-		}
-		else
-		{
-			append_string(line, pos);
-		}
-
-		pos = strstr(end, "$");
-	}
-} */
-
-/*
-void expand_line(program_data *data)
-{
-	char line[BUFFER_SIZE];
-	append_string(line, data->input_line);
-
-	// Remove comments
-	char *pos = strstr(line, "#");
-	if (pos != NULL)
-		*pos = '\0';
-
-	// Expand variables
-	expand_error(line);
-	expand_pid(line);
-	expand_env(line, data);
-
-	// Update input line
-	if (!str_compare(data->input_line, line, 0))
-	{
-		free(data->input_line);
-		data->input_line = str_duplicate(line);
-	}
-}
-*/

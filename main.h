@@ -64,13 +64,11 @@ int _getline(program_data *data);
 int check_operators(char *array_commands[], int i, char array_operators[]);
 
 /* expand_helpers_1.c */
-void expand_error(char *line);
-void expand_pid(char *line);
-void expand_env(char *line, program_data *data);
-void expand_line(program_data *data);
+void expand_variables(program_data *data);
+void expand_special_variables(program_data *data, char *line);
+void expand_environment_variables(program_data *data, char *line);
 
 /* expand_helpers_2.c */
-void expand_variables(program_data *data);
 void expand_alias(program_data *data);
 int append_string(char *buffer, char *str);
 
