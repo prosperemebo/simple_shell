@@ -63,7 +63,7 @@ void handle_env_assignment(program_data *data)
 int builtin_set_env(program_data *data)
 {
 	if (data->tokens[1] == NULL || data->tokens[2] == NULL)
-		return 0;
+		return (0);
 
 	if (data->tokens[3] != NULL)
 	{
@@ -86,7 +86,7 @@ int builtin_set_env(program_data *data)
 int builtin_unset_env(program_data *data)
 {
 	if (data->tokens[1] == NULL)
-		return 0;
+		return (0);
 
 	if (data->tokens[2] != NULL)
 	{
