@@ -119,9 +119,9 @@ int builtin_help(program_data *data);
 int builtin_alias(program_data *data);
 
 /* builtin_helpers_2.c */
-int builtins_list(program_data *data);
 int builtin_env(program_data *data);
 int builtin_set_env(program_data *data);
+int builtin_unset_env(program_data *data);
 void handle_env_assignment(program_data *data);
 
 #endif

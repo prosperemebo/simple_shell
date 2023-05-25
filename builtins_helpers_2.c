@@ -9,7 +9,7 @@
 int builtin_env(program_data *data)
 {
 	if (data->tokens[1] == NULL)
-		print_environment(data);
+		print_enviroment(data);
 	else
 		handle_env_assignment(data);
 
@@ -33,7 +33,7 @@ void handle_env_assignment(program_data *data)
 			var_copy = str_duplicate(get_env_key(cpname, data));
 			if (var_copy != NULL)
 				set_env_key(cpname, data->tokens[1] + i + 1, data);
-			print_environment(data);
+			print_enviroment(data);
 			if (get_env_key(cpname, data) == NULL)
 			{
 				_print(data->tokens[1]);

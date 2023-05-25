@@ -133,7 +133,7 @@ int execute(program_data *data)
 	int retval = 0, status;
 	pid_t pidd;
 
-	retval = builtins_list(data);
+	retval = builtin_env(data);
 	if (retval != -1)
 		return (retval);
 
