@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * is_valid - checks if a command is valid

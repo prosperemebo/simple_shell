@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * check_alias - checks for aliases
@@ -7,7 +7,7 @@
  * @idx: integer
  * Return: none
  */
-void check_alias(char ***arr, aliases *alias, int idx)
+void check_alias(char ***arr, program_aliases *alias, int idx)
 {
 	int i, n;
 
@@ -22,6 +22,7 @@ void check_alias(char ***arr, aliases *alias, int idx)
 		}
 	}
 }
+
 /**
  * and_handling - handles &&
  * @line: input command line
@@ -30,7 +31,7 @@ void check_alias(char ***arr, aliases *alias, int idx)
  * @idx: integer
  * Return: integer
  */
-int and_handling(char *line, char *name, aliases *alias, int *idx)
+int and_handling(char *line, char *name, program_aliases *alias, int *idx)
 {
 	char **arr, **line_split;
 	int break_condition, argc, selector, i = 0;
@@ -69,6 +70,7 @@ int and_handling(char *line, char *name, aliases *alias, int *idx)
 	_free(line_split);
 	return (break_condition ? 0 : EXIT_FAILURE);
 }
+
 /**
  * or_handling - handles ||
  * @line: input command line
@@ -77,7 +79,7 @@ int and_handling(char *line, char *name, aliases *alias, int *idx)
  * @idx: integer
  * Return: integer
  */
-int or_handling(char *line, char *name, aliases *alias, int *idx)
+int or_handling(char *line, char *name, program_aliases *alias, int *idx)
 {
 	char **arr, **line_split;
 	int break_condition, argc, selector, i = 0;
@@ -117,6 +119,7 @@ int or_handling(char *line, char *name, aliases *alias, int *idx)
 	_free(line_split);
 	return (break_condition ? 0 : EXIT_FAILURE);
 }
+
 /**
  * semi_column_handling - handles ;
  * @line: input command line
@@ -125,7 +128,7 @@ int or_handling(char *line, char *name, aliases *alias, int *idx)
  * @idx: integer
  * Return: integer
  */
-int semi_column_handling(char *line, char *name, aliases *alias, int *idx)
+int semi_column_handling(char *line, char *name, program_aliases *alias, int *idx)
 {
 	char **arr, **line_split;
 	int argc, i = 0, frk = 0;
@@ -151,7 +154,7 @@ int semi_column_handling(char *line, char *name, aliases *alias, int *idx)
 			check_alias(&arr, alias, *idx);
 		argc = args_count(arr);
 		if (argc > 0 && cmd_selector(arr[0], arr,
-					name, alias, idx, line_split, line) < 0)
+					     name, alias, idx, line_split, line) < 0)
 			_fork(name, arr);
 		else if (!_strstr(line, "@") && argc == 0)
 		{
@@ -164,6 +167,7 @@ int semi_column_handling(char *line, char *name, aliases *alias, int *idx)
 	_free(line_split);
 	return (frk ? EXIT_FAILURE : 0);
 }
+
 /**
  * split_line - reads command line (input)
  * @line: input command line
@@ -172,7 +176,7 @@ int semi_column_handling(char *line, char *name, aliases *alias, int *idx)
  * @idx: integer
  * Return: integer
  */
-int split_line(char *line, char *name, aliases *alias, int *idx)
+int split_line(char *line, char *name, program_aliases *alias, int *idx)
 {
 	size_t old_len;
 	size_t new_len;

@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * error2 - prints error msgs to stderr (part 2)

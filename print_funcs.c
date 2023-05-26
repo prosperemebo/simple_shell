@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * to_string - cast an integer to decimal

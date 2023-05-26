@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * exists_within - checks whether character is within delim

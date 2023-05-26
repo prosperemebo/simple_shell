@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * _getenv - retrieves enviromental variables
@@ -28,7 +28,7 @@ char *_getenv(char *var)
  * @idx: index
  * Return: string
  */
-int _getalias(aliases *alias, char *var, int idx)
+int _getalias(program_aliases *alias, char *var, int idx)
 {
 	int i;
 

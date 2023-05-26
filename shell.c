@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * main - simple shell program
@@ -8,11 +8,11 @@
  */
 int main(int argc, char **args)
 {
-	aliases alias;
+	program_aliases alias;
 	int idx = 0, ret_val = 0;
 	char *input = NULL, *name = args[0], *temp = NULL;
 
-	(void) argc;
+	(void)argc;
 	alias.name = NULL;
 	alias.value = NULL;
 	while (1)

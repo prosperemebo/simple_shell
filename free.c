@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 /**
  * _free - frees array of strings
  * @arr: arr

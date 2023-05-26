@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * _alias - takes care of aliases
@@ -12,7 +12,7 @@
  * Return: success
  */
 int _alias(int argc, char **args, char *name,
-		aliases *alias, int *idx, char **split, char *line)
+		program_aliases *alias, int *idx, char **split, char *line)
 {
 	char **al;
 	int i, j;

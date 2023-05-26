@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * exit_function - function to exit
@@ -12,7 +12,7 @@
  * Return: success
  */
 int exit_function(int n, char **args, char *name,
-		aliases *alias, int *idx, char **split, char *line)
+		program_aliases *alias, int *idx, char **split, char *line)
 {
 	int i = 0;
 
@@ -46,7 +46,7 @@ int exit_function(int n, char **args, char *name,
  * Return: success
  */
 int change_dir(int argc, char **args, char *name,
-		aliases *alias, int *idx, char **split, char *line)
+		program_aliases *alias, int *idx, char **split, char *line)
 {
 	char *path, *temp;
 
@@ -81,7 +81,7 @@ int change_dir(int argc, char **args, char *name,
  * Return: success
  */
 int export(int argc, char **args, char *name,
-		aliases *alias, int *idx, char **split, char *line)
+		program_aliases *alias, int *idx, char **split, char *line)
 {
 	int i = 0;
 	char *temp = NULL;
@@ -125,7 +125,7 @@ int export(int argc, char **args, char *name,
  * Return: success
  */
 int unset(int argc, char **args, char *name,
-		aliases *alias, int *idx, char **split, char *line)
+		program_aliases *alias, int *idx, char **split, char *line)
 {
 	int i;
 
@@ -168,7 +168,7 @@ int unset(int argc, char **args, char *name,
  * Return: success
  */
 int env(int argc, char **args, char *name,
-		aliases *alias, int *idx, char **split, char *line)
+		program_aliases *alias, int *idx, char **split, char *line)
 {
 	int i;
 

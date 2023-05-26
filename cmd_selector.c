@@ -1,4 +1,4 @@
-#include "head.h"
+#include "main.h"
 
 /**
  * cmd_selector - checks for builin functions
@@ -12,7 +12,7 @@
  * Return: success
  */
 int cmd_selector(const char *cmd, char **args,
-		char *name, aliases *alias, int *idx, char **split, char *line)
+		char *name, program_aliases *alias, int *idx, char **split, char *line)
 {
 	cmd_executer executers[] = {
 		{"exit", exit_function},
