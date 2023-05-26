@@ -24,9 +24,10 @@ typedef struct program_aliases
 } program_aliases;
 
 /**
- * struct cmd_executer - structure
- * @cmd: command
- * @exe_func: function
+ * struct cmd_executer - Command
+ * Excuter Struture
+ * @cmd: Input command
+ * @exe_func: Function
  */
 typedef struct cmd_executer
 {
@@ -56,37 +57,50 @@ char **_strtok(char *, char *);
 void swap_substring(char *, char *, char *);
 int _atoi(char *);
 
+/* getline.c */
 int _getline(char **);
 int _read(char **, char **);
-void check_fork_error(char *, char **, char *);
+
+/* executer.c */
 int executer(char **, char *, char *);
-void get_cmds(char ***, char *);
+
+/* memory_helpers.c */
 void _free(char **);
 void *_calloc(unsigned int, unsigned int);
+
+/* fork.c */
 int _fork(char *, char **);
-int args_count(char **);
-char *is_valid(char *, char *, char **);
-int args_count(char **);
-char *check_ops(char **);
-char *_getenv(char *);
-int _getalias(program_aliases *, char *, int);
-int echo(char **);
-int error(char *, char **, char *, int);
 
-/* printing functions */
-int to_string(int, unsigned int);
-int print_string(int, char *);
-/* for cmd exec */
-
+/* cmd_selector.c */
+int args_count(char **);
 int cmd_selector(const char *, char **, char *,
 		 program_aliases *, int *, char **, char *);
-int change_dir(int, char **, char *, program_aliases *, int *, char **, char *);
+
+/* is_valid.c */
+char *is_valid(char *, char *, char **);
+
+/* env_helpers.c */
+char *_getenv(char *);
+int _getalias(program_aliases *, char *, int);
+
+/* echo.c */
+int echo(char **);
+
+/* error.c */
+int error(char *, char **, char *, int);
+
+/* print_helpers.c */
+int to_string(int, unsigned int);
+int print_string(int, char *);
+
+/* cmd_helpers.c */
 int exit_function(int, char **, char *, program_aliases *, int *, char **, char *);
+int change_dir(int, char **, char *, program_aliases *, int *, char **, char *);
 int export(int, char **, char *, program_aliases *, int *, char **, char *);
 int unset(int, char **, char *, program_aliases *, int *, char **, char *);
 int env(int, char **, char *, program_aliases *, int *, char **, char *);
-int _alias(int, char **, char *, program_aliases *, int *, char **, char *);
 
-/* custom string functions */
+/* alias.c */
+int _alias(int, char **, char *, program_aliases *, int *, char **, char *);
 
 #endif

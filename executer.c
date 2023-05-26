@@ -1,10 +1,12 @@
 #include "main.h"
 
 /**
- * executer - executes commands
+ * executer - Executes input commands
+ *
  * @arr: argument array
  * @name: name
  * @path: path
+ *
  * Return: success
  */
 int executer(char **arr, char *name, char *path)
@@ -12,7 +14,7 @@ int executer(char **arr, char *name, char *path)
 	int i = 0, success = 1;
 	char *env;
 
-	(void) name;
+	(void)name;
 	if (arr)
 	{
 		i = echo(arr);

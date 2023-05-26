@@ -128,7 +128,8 @@ int or_handling(char *line, char *name, program_aliases *alias, int *idx)
  * @idx: integer
  * Return: integer
  */
-int semi_column_handling(char *line, char *name, program_aliases *alias, int *idx)
+int semi_column_handling(char *line, char *name,
+			 program_aliases *alias, int *idx)
 {
 	char **arr, **line_split;
 	int argc, i = 0, frk = 0;
@@ -178,7 +179,8 @@ int semi_column_handling(char *line, char *name, program_aliases *alias, int *id
  *
  * Return: integer
  */
-int split_line(char *line, char *name, program_aliases *alias, int *idx)
+int split_line(char *line, char *name,
+	       program_aliases *alias, int *idx)
 {
 	size_t old_len;
 	size_t new_len;

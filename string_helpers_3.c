@@ -76,8 +76,7 @@ void swap_substring(char *str, char *old_substr, char *new_substr)
 	ptr = _strstr(str, old_substr);
 	if (!ptr)
 		return;
-	do
-	{
+	do {
 		ptr[k++] = ptr[l++];
 	} while (ptr[l]);
 	ptr[k] = '\0';

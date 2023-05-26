@@ -1,8 +1,10 @@
 #include "main.h"
 
 /**
- * echo - handles echo $$ and $?
- * @args: arguments
+ * echo - Handles echo $$ and $
+ *
+ * @args: Function arguments
+ *
  * Return: success
  */
 int echo(char **args)

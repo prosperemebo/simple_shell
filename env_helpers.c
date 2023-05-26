@@ -21,6 +21,7 @@ char *_getenv(char *var)
 	}
 	return (NULL);
 }
+
 /**
  * _getalias -retrieve aliases
  * @alias: aliases
