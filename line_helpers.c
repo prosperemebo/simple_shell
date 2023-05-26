@@ -169,11 +169,13 @@ int semi_column_handling(char *line, char *name, program_aliases *alias, int *id
 }
 
 /**
- * split_line - reads command line (input)
+ * split_line - Splits input Line
+ *
  * @line: input command line
  * @name: file name
  * @alias: alias array
  * @idx: integer
+ *
  * Return: integer
  */
 int split_line(char *line, char *name, program_aliases *alias, int *idx)
@@ -186,26 +188,26 @@ int split_line(char *line, char *name, program_aliases *alias, int *idx)
 	old_len = _strlen(line);
 	if (old_len == 1)
 		return (0);
-	replace_substring(line, "&&", "&");
+	swap_substring(line, "&&", "&");
 	new_len = _strlen(line);
 	if (new_len < old_len)
 	{
-		replace_substring(line, "&&", "&");
+		swap_substring(line, "&&", "&");
 		if (_strlen(line) < new_len)
 			return (error(name, NULL, NULL, 7));
 		return (and_handling(line, name, alias, idx));
 	}
-	replace_substring(line, "||", "|");
+	swap_substring(line, "||", "|");
 	new_len = _strlen(line);
 	if (new_len < old_len)
 	{
-		replace_substring(line, "||", "|");
+		swap_substring(line, "||", "|");
 		if (_strlen(line) < new_len)
 			return (error(name, NULL, NULL, 8));
 		return (or_handling(line, name, alias, idx));
 	}
 	if (_strstr(line, ";;"))
 		return (error(name, NULL, NULL, 9));
-	replace_substring(line, "\n", "@");
+	swap_substring(line, "\n", "@");
 	return (semi_column_handling(line, name, alias, idx));
 }

@@ -36,14 +36,26 @@ typedef struct cmd_executer
 } cmd_executer;
 
 /* line_helpers.c */
-void check_alias(char ***arr, program_aliases *alias, int idx);
-int and_handling(char *line, char *name, program_aliases *alias, int *idx);
-int or_handling(char *line, char *name, program_aliases *alias, int *idx);
-int semi_column_handling(char *line, char *name, program_aliases *alias, int *idx);
-int split_line(char *line, char *name, program_aliases *alias, int *idx);
+int split_line(char *, char *, program_aliases *, int *);
 
-/*int split_line(char *, char *, program_aliases *, int *); */
+/* string_helpers_1.c */
+char *_strpbrk(char *, char *);
+char *_strcpy(char *, char *);
+char *_strcat(char *, char *);
+void del(char **);
+
+/* string_helpers_2.c */
+size_t _strlen(char *);
+int _strcmp(const char *, char *);
+int _strncmp(const char *, char *, int);
+char *_strstr(char *, char *);
+char *_memcpy(char *, char *, unsigned int);
+
+/* string_helpers_3.c */
 char **_strtok(char *, char *);
+void swap_substring(char *, char *, char *);
+int _atoi(char *);
+
 int _getline(char **);
 int _read(char **, char **);
 void check_fork_error(char *, char **, char *);
@@ -76,17 +88,5 @@ int env(int, char **, char *, program_aliases *, int *, char **, char *);
 int _alias(int, char **, char *, program_aliases *, int *, char **, char *);
 
 /* custom string functions */
-char **_strtok(char *, char *);
-char *_strpbrk(char *, char *);
-char *_strcpy(char *, char *);
-char *_strcat(char *, char *);
-void del(char **);
-size_t _strlen(char *);
-int _strcmp(const char *, char *);
-int _strncmp(const char *, char *, int);
-char *_strstr(char *, char *);
-char *_memcpy(char *, char *, unsigned int);
-void replace_substring(char *, char *, char *);
-int _atoi(char *);
 
 #endif

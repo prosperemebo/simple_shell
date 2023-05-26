@@ -60,13 +60,13 @@ char **_strtok(char *s, char *delim)
 }
 
 /**
- * replace_substring - replaces substring
+ * swap_substring - replaces substring
  * @str: input string
  * @old_substr: old substring
  * @new_substr: input substring
  * Return: command decomposition
  */
-void replace_substring(char *str, char *old_substr, char *new_substr)
+void swap_substring(char *str, char *old_substr, char *new_substr)
 {
 	char *ptr = NULL;
 	size_t old_len = _strlen(old_substr);
@@ -76,12 +76,13 @@ void replace_substring(char *str, char *old_substr, char *new_substr)
 	ptr = _strstr(str, old_substr);
 	if (!ptr)
 		return;
-	do {
+	do
+	{
 		ptr[k++] = ptr[l++];
 	} while (ptr[l]);
 	ptr[k] = '\0';
 	_memcpy(ptr, new_substr, new_len);
-	replace_substring(ptr + new_len, old_substr, new_substr);
+	swap_substring(ptr + new_len, old_substr, new_substr);
 }
 
 /**
